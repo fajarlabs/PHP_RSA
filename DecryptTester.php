@@ -1,0 +1,38 @@
+﻿<?php
+include('Crypt/RSA.php');
+
+$rsa = new Crypt_RSA();
+    $rsa->setHash('sha1');
+    $rsa->setMGFHash('sha1');
+    $rsa->setEncryptionMode(CRYPT_RSA_ENCRYPTION_OAEP);
+    $rsa->setPrivateKeyFormat(CRYPT_RSA_PRIVATE_FORMAT_PKCS1);
+    $rsa->setPublicKeyFormat(CRYPT_RSA_PUBLIC_FORMAT_PKCS1);
+
+// $publickey = "-----BEGIN RSA PUBLIC KEY-----
+// MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCsPRiiT6rtszKLxgkAUSwjOI56tzt/SlwHJYRI
+// ZOsogNnx5JqxaXwEEPPR8lHVPRqQtPHLJJ0aU2Llj3Zo4Naqwym7zsZEbxg7Yhl40FBzf8fuPsiC
+// ntkGzrcC+JEUxkJh6VGF5KHEQRA5RywfCPN1peTDtbRT2623JnM5AQ11GQIDAQAB
+// -----END RSA PUBLIC KEY-----";
+$privatekey = "-----BEGIN RSA PRIVATE KEY-----
+MIICeAIBADANBgkqhkiG9w0BAQEFAASCAmIwggJeAgEAAoGBAL96mlX928RSpPf6gJ6XR4r2LyOu
+ZNuQ27cs5OTR4w5IlJlzWWu+VsbnPPZ5Q/IoWkEfsh2hpPIipkNhQPjVYVVKtKVWuhHGU/XWSdBK
+xtbhzQIeFeB1969niHQSuT9rIpa9sQDzKcGQsbSyW/2bRPX9yRJKoOmEv8shE/QaFHtNAgMBAAEC
+gYA6/2rIbiSl1BUSdzPkKZaYoYwawWRAJt0cDpAkVOtR/lkTAvCdexM/zAYDp4+g8IAGqt51tNWe
+6cAy6KddRFntpk54rIynQ5ZXPuhVBL4OD+Sf/mDgD3rF7FOG8MpMMrELBCv6TngeMfpKpEOQ3kGZ
+kgFHpb+Q/IeZ8Zi5EOInQQJBAOO00EuUj99wcA/cKUzyQGIxyOayGnZH2ija90yhOkJrzVZIYJSG
+OnyB5KRO0hHE9Wk37BMpqyvbURsJCq6D4LECQQDXRWuNbkET9n2OjPEULiH3UBJfOYAj7zQZC3Ar
+DkItP+L8F6Xt9FBfoBdFXIfR7ymFggD+pE2l4GAyWvM82EtdAkEAmLW6u/V2R7NwdDKCwEf3ReN9
+iLoJZSnq9VtkXtAB8mm53BPOMc2Ti8zROiBiYehlbZtDh9Z6JX+AdVErCL8JAQJBAJHrtKQCAIsP
+orxmPWR4gP2rgUibKYkyNBZl8nq9B460p6BKR2etHG41jpCt0EM14udk4Fe7+AZgudRoYkj0NOEC
+QQCb6agkfnrhDAn7truTzgWz/pNXYISYak5L3Qr+HL7jb809OAa2fl1KfxfCBFRGqn/UnLMTHVMh
+24jD/rpLTpzJ
+-----END RSA PRIVATE KEY-----";
+$ciphertext = base64_decode("LKoY0XQy2BcrPiNJaL+a136uiBEybtFAPUDe2mZpJ/4x8VwoOrhzM+SZ16Y4TkZiu1Twei+kfw94
+U4i5gD8/DhfL7rwMaFvRUwkk6g8KRUVKg4z5VQ3VlQLENUU9WRK5V3h8jD2hJQ9pN1hXnDKzXl5Y
+yGD3AADJlAIXrg9PA50=");
+$rsa->loadKey($privatekey); // private key
+
+echo $rsa->decrypt($ciphertext);
+
+
+?>
